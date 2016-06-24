@@ -1,0 +1,26 @@
+{
+    "name": "avalon/phpunit-testing",
+    "description": "Test Avalon apps with PHPUnit.",
+    "keywords": ["avalon", "framework", "testing"],
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Jack"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "avalon/testing": "^1.0@dev",
+        "phpunit/phpunit": "^5.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Avalon\\Testing\\PhpUnit\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+           "dev-master": "1.0.x-dev"
+        }
+    }
+}
