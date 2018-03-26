@@ -19,7 +19,8 @@
 
 namespace Avalon\Testing\PhpUnit;
 
-use PHPUnit_Framework_TestCase;
+use Avalon\AppKernel;
+use Avalon\Http\RedirectResponse;
 use Avalon\Routing\Router;
 use Avalon\Testing\TestSuite;
 use Avalon\Testing\Http\MockRequest;
@@ -29,11 +30,24 @@ use Avalon\Testing\Http\Response;
  * Extends the PHPUnit TestCase class to add helper methods.
  *
  * @package Avalon\Testing\PhpUnit
- * @author Jack P.
- * @since 1.0.0
+ * @author  Jack P.
+ * @since   1.0.0
  */
-abstract class TestCase extends PHPUnit_Framework_TestCase
+abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
+    /**
+     * @var AppKernel
+     */
+    public static $app;
+
+    /**
+     * @return AppKernel
+     */
+    protected static function getApp()
+    {
+        return static::$app;
+    }
+
     /**
      * Visit the route.
      *
@@ -46,7 +60,7 @@ abstract class TestCase extends PHPUnit_Framework_TestCase
         $route = $this->generateUrl($routeName, $requestInfo['routeTokens']);
         $request = new MockRequest($route, $requestInfo);
 
-        return TestSuite::app()->process($request);
+        return $this->getApp()->process($request);
     }
 
     /**
