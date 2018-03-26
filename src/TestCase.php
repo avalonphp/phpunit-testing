@@ -75,4 +75,14 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     {
         return Router::generateUrl($route, $tokens);
     }
+
+    /**
+     * @param string           $expectedUrl
+     * @param RedirectResponse $response
+     */
+    public function assertRedirectTo($expectedUrl, $response)
+    {
+        $this->assertInstanceOf(RedirectResponse::class, $response);
+        $this->assertEquals($expectedUrl, $response->url);
+    }
 }
